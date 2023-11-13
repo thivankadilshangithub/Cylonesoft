@@ -1,33 +1,44 @@
-import React from 'react';
-import { useEffect , useState } from 'react';
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Item from './Item';
 
-const URL = "https://dummyjson.com/products";
-
-
-const fetchhandler = async()=> {
-    return await axios.get(URL).then((res)=> res.data);
-}
+const URL = 'https://dummyjson.com/products';
 
 const Items = () => {
-    const [items , setItems] = useState();
-    useEffect(()=> {
-        fetchhandler().then((data) => setItems(data.items));
-    } , []);
-    console.log(items);
+  const [items, setItems] = useState([]);
+
+  const fetchHandler = async () => {
+    try {
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+      const res = await axios.get(URL, { headers });
+      const data = res.data;
+      setItems(data.products);
+      console.log('data',data)
+      console.log('data here', data);
+      console.log('Set Item', items);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchHandler();
+  }, []);
+
   return (
     <div>
-     <ul>
-         {items && 
-         items.map((products,i)=>(
-             <li className='products' key={i}>
-                 <Item products={products} />
-             </li>
-         ))}
-     </ul>
+      <ul>
+        {items &&
+          items.map((product, id) => (
+            <div key={id}>
+              <Item product={product} />
+            </div>
+          ))}
+      </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Items
+export default Items;

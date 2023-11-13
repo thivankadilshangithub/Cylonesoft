@@ -1,15 +1,19 @@
 import './App.css';
-import Item from './components/Item';
+import React from "react";
 import Items from './components/items';
 
 function App() {
   
   return (
-    <div className="App">
-     <Items>
-     <Item/>
-     </Items>
-    </div>
+    <React.Fragment>
+      <main>
+       <>
+       <Items/>
+       </>
+       
+      </main>
+  
+    </React.Fragment>
   );
 }
 
