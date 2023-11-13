@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Item from './Item';
+import ItemDetails from './ItemDetails';
 
 const URL = 'https://dummyjson.com/products';
 
@@ -13,11 +14,11 @@ const Items = () => {
         'Content-Type': 'application/json',
       };
       const res = await axios.get(URL, { headers });
-      const data = res.data;
+      console.log(res)
+      const data = res.data; 
+      console.log(data)
       setItems(data.products);
-      console.log('data',data)
-      console.log('data here', data);
-      console.log('Set Item', items);
+      console.log('setdata',items)
     } catch (error) {
       console.log(error);
     }
@@ -30,12 +31,12 @@ const Items = () => {
   return (
     <div>
       <ul>
-        {items &&
-          items.map((product, id) => (
-            <div key={id}>
-              <Item product={product} />
-            </div>
-          ))}
+        {items.map((item) => (
+          <>
+          <Item key={item.id} {...item} />
+          </>
+          
+        ))}
       </ul>
     </div>
   );
