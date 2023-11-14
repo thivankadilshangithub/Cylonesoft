@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Item from './Item';
-import ItemDetails from './ItemDetails';
+import Item from '../components/Item';
+// import ItemDetails from './ItemDetails';
 
 const URL = 'https://dummyjson.com/products';
 
@@ -30,12 +30,10 @@ const Items = () => {
 
   return (
     <div>
+      <h1 className='productListh1'>Product List</h1>
       <ul>
         {items.map((item) => (
-          <>
-          <Item key={item.id} {...item} />
-          </>
-          
+          <Item key={item.id} setItems={setItems} {...item} />
         ))}
       </ul>
     </div>

@@ -1,21 +1,19 @@
 import React from "react";
-import Items from './components/items';
-import { Routes, Route , BrowserRouter} from "react-router-dom";
-import ItemDetails from "./components/ItemDetails";
+import Items from "./pages/items";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import ItemDetails from "./pages/ItemDetails";
 
 function App() {
-  
   return (
     <React.Fragment>
-       <main>
+      <main>
         <BrowserRouter>
-        <Routes>
-        <Route path="/" element={<Items />} />
-          <Route path="/products/:productId" element={<ItemDetails />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Items />} />
+            <Route path="/products/:productId" element={<ItemDetails />} />
+          </Routes>
         </BrowserRouter>
       </main>
-      
     </React.Fragment>
   );
 }
